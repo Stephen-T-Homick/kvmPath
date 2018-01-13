@@ -41,7 +41,6 @@ fi
 if [ $(egrep -c '(vmx|svm)' /proc/cpuinfo) -gt '1' ] ; then
   printf "We're good to go. You have $(egrep -c '(vmx|svm)' /proc/cpuinfo) cores. "
   printf "KVM Ready to install. \n \n"
-  read -p "Press Enter to continue install, or ctrl+c to cancel."
   printf "Installing \n \n "
   kvm_install
 fi
