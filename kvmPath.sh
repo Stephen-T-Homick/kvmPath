@@ -52,8 +52,9 @@ fi
 kvm_install(){
   (apt-get -y update && apt-get -y install qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils && apt-get -y install virt-manager) && printf "\n \n Please reboot machine to establish libvirt / qemu connection \n \n"
   kvm-ok
+  command -v virsh ; dpkg -l | grep -i libvirt
   read -p "Reboot now :> (CTRL+C to cancel, Enter to reboot)"
-  sudo reboot
+  sudo reboot now
 
 }
 kvm_prereqs
