@@ -29,7 +29,7 @@ echo -e " $GREENTXT[*]$RESETTXT root[*] check."
 cpuname=$(cat /proc/cpuinfo | grep 'model name' | uniq)
 cores=$(egrep -c '(vmx|svm)' /proc/cpuinfo)
 
-read -p "If you are ready to install libvirt/kvm please press Enter. Or press CTRL+C to cancel"
+read -p "If you are ready to install libvirt/kvm please press Enter or press CTRL+C to cancel"
 
 kvm_prereqs()
 {
@@ -42,14 +42,14 @@ if [ $cores -lt '1' ] ; then
   cpuname=$(cat /proc/cpuinfo | grep 'model name' | uniq)
 
   exit 1
-fi
+fi #if [ $cores -lt '1' ]
 
 if [ $cores -gt '1' ] ; then
   printf "We're good to go. You have $(egrep -c '(vmx|svm)' /proc/cpuinfo) cores. "
   printf "KVM Ready to install. \n \n"
   printf "Installing \n \n "
   kvm_install
-fi
+fi #if [ $cores -gt '1' ]
 # comments
 
 }
