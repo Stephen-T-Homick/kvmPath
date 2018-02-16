@@ -20,7 +20,7 @@ if [ $(id -u) != 0 ] ; then
   exit 1
 fi
 
-(command -v dpkg || printf "[X] You are currently not utilizing a Debian Based Linux distro. \n \n " ; cat /etc/issue;  exit 1)
+(command -v dpkg || printf "[X] You are currently not utilizing a Debian Based Linux distro. \n \n " ; cat /etc/issue)
 
 echo -e " $GREENTXT[*]$RESETTXT Debian / Ubuntu[*] check"
 echo -e " $GREENTXT[*]$RESETTXT root[*] check."
