@@ -5,7 +5,7 @@
 
 set -o pipefail   # If a command anywhere in the set of piped commands failed, the whole line should fail
 set -u  # Uninitialized variables should cause an error
-set -e # Exit the script if any command fails
+set -e  # Exit the script if any command fails
 
 
 #Color Schemes
