@@ -20,36 +20,37 @@ if [ $(id -u) != 0 ] ; then
   exit 1
 fi
 
-(command -v dpkg || printf "[X] You are currently not utilizing a Debian Based Linux distro. \n \n " ; cat /etc/issue;  exit 1)
+(command -v dpkg || printf "[X] You are currently not utilizing a Debian Based Linux distro. \n \n " ; cat /etc/issue)
 
 echo -e " $GREENTXT[*]$RESETTXT Debian / Ubuntu[*] check"
 echo -e " $GREENTXT[*]$RESETTXT root[*] check."
 
 #sys variables
 cpuname=$(cat /proc/cpuinfo | grep 'model name' | uniq)
+cores=$(egrep -c '(vmx|svm)' /proc/cpuinfo)
 
-read -p "If you are ready to install libvirt/kvm please press Enter. Or press CTRL+C to cancel"
+read -p "If you are ready to install libvirt/kvm please press Enter or press CTRL+C to cancel"
 
 kvm_prereqs()
 {
 #hostcpu=$(egrep -c '(vmx|svm)' /proc/cpuinfo)
 
-if [ $(egrep -c '(vmx|svm)' /proc/cpuinfo) -lt '1' ] ; then
+if [ $cores -lt '1' ] ; then
   printf "This machine does not support virtualization. \n exiting"
   printf "https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/5/html/Virtualization/chap-Virtualization-System_requirements.html \n \n"
   printf "https://askubuntu.com/questions/806532/getting-information-about-cpu \n \n"
   cpuname=$(cat /proc/cpuinfo | grep 'model name' | uniq)
 
   exit 1
-fi
+fi #if [ $cores -lt '1' ]
 
-if [ $(egrep -c '(vmx|svm)' /proc/cpuinfo) -gt '1' ] ; then
+if [ $cores -gt '1' ] ; then
   printf "We're good to go. You have $(egrep -c '(vmx|svm)' /proc/cpuinfo) cores. "
   printf "KVM Ready to install. \n \n"
   printf "Installing \n \n "
   kvm_install
-fi
-
+fi #if [ $cores -gt '1' ]
+# comments
 
 }
 
