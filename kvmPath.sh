@@ -35,7 +35,7 @@ kvm_prereqs()
 {
 #hostcpu=$(egrep -c '(vmx|svm)' /proc/cpuinfo)
 
-if [ $cores -lt '1' ] ; then
+if [ $cores -lt '2' ] ; then
   printf "This machine does not support virtualization. \n exiting"
   printf "https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/5/html/Virtualization/chap-Virtualization-System_requirements.html \n \n"
   printf "https://askubuntu.com/questions/806532/getting-information-about-cpu \n \n"
