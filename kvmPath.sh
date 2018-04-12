@@ -35,16 +35,17 @@ kvm_prereqs()
 {
 #hostcpu=$(egrep -c '(vmx|svm)' /proc/cpuinfo)
 
-if [ $cores -lt '2' ] ; then
+if [ "$cores" -lt '2' ] ; then
   printf "This machine does not support virtualization. \n exiting"
   printf "https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/5/html/Virtualization/chap-Virtualization-System_requirements.html \n \n"
   printf "https://askubuntu.com/questions/806532/getting-information-about-cpu \n \n"
   cpuname=$(cat /proc/cpuinfo | grep 'model name' | uniq)
+  echo "$cpuname"
 
   exit 1
 fi #if [ $cores -lt '1' ]
 
-if [ $cores -gt '1' ] ; then
+if [ "$cores" -gt '1' ] ; then
   printf "We're good to go. You have $(egrep -c '(vmx|svm)' /proc/cpuinfo) cores. "
   printf "KVM Ready to install. \n \n"
   printf "Installing \n \n "
